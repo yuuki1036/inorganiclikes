@@ -35,7 +35,7 @@ class TaskHelper():
 
     # get_follower, followback, unfollow
     def is_scroll_and_load(self):
-        time.sleep(0.01)
+        time.sleep(0.02)
         if self.scroll_pos + 1000 < self.dialog_hight:
             return True
         else:

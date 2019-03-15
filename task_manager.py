@@ -66,8 +66,9 @@ class TaskManager(LoginTask, TagSearchTask, TimelineTask, GetFollowerTask, Follo
         try:
             # 新規ウインドウを起動
             self.bs = self.web_driver_setup(self.util_param['display_browser'])
+            logger.debug("OK")
         except WebDriverException:
-            logger.info("NG")
+            logger.error("NG")
             self.info.set("google chromeがありません\nインストールしてください\n")
 
     # ドライバーをチェック
@@ -76,6 +77,7 @@ class TaskManager(LoginTask, TagSearchTask, TimelineTask, GetFollowerTask, Follo
         time.sleep(2)
         # bsアトリビュートを持っているか
         if not hasattr(self, 'bs'):
+            logger.debug("has not bs")
             return False
         # ドライバーの存在を確認
         try:
@@ -86,7 +88,7 @@ class TaskManager(LoginTask, TagSearchTask, TimelineTask, GetFollowerTask, Follo
             return False
         # 使用できるブラウザの有無確認
         if drivers:
-            logger.info("OK")
+            logger.debug("OK")
             return True
         else:
             logger.info("browser not found")
@@ -102,6 +104,7 @@ class TaskManager(LoginTask, TagSearchTask, TimelineTask, GetFollowerTask, Follo
             time.sleep(3)
             self.bs.find_element_by_xpath(self.NETWORK_ERROR_XPATH)
         except WebDriverException:
+            logger.debug("OK")
             return True
         logger.info("NG")
         return False
@@ -114,6 +117,7 @@ class TaskManager(LoginTask, TagSearchTask, TimelineTask, GetFollowerTask, Follo
         try:
             self.bs.find_element_by_xpath(self.AUTH_CHECK_XPATH)
         except WebDriverException:
+            logger.debug("OK")
             return True
         logger.info("NG")
         self.info.set("{}を実行中..\n接続がタイムアウトしました\n再度ログインを試みます".format(self.task_name))

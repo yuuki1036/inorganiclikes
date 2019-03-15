@@ -14,7 +14,7 @@ class Trigger():  # ユーザーアクションに対する処理
             self.util_v.util_f.auto_login_c.state(['disabled'])
         # 設定の変更を保存
         self.change_util_param('login_save', self.util_v.util_f.login_save.get())
-        logger.info("complete")
+        logger.debug("complete")
 
     # タイムラインの終了条件によってタイムラインビューの表示を切り替える
     def clicked_timeline_condition(self):
@@ -26,7 +26,7 @@ class Trigger():  # ユーザーアクションに対する処理
             self.tl_v.tl_f.timeline_entry.set(self.util_param['timeline_continue_liked_limit'])
         # 設定の変更を保存
         self.change_util_param('timeline_condition', self.util_v.util_f.timeline_condition.get())
-        logger.info("complete")
+        logger.debug("complete")
 
     # ログインボタンを押した
     def pushed_login(self):

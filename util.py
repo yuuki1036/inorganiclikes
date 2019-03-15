@@ -28,14 +28,6 @@ class WebDriver():
         self.bs = webdriver.Chrome(executable_path=chromedriver, options=options)
         return self.bs
 
-    def display_browser(self):
-        try:
-            self.bs.close()
-        except WebDriverException:
-            pass
-        delattr(self, 'bs')
-        self.bs = self.web_driver_setup(0)
-
 
 class DB():
     def connect_db(self):
@@ -63,10 +55,11 @@ class DB():
         db_record = list(db_record)
 
         self.util_param = dict(zip(db_col_li, db_record))
+        logger.debug(self.util_param)
 
         # パラメータの状態に合わせて初期化
         self.util_initialize_setting()
-        logger.info("complete")
+        logger.debug("complete")
 
         self.conn.close()
 
@@ -109,7 +102,7 @@ class DB():
         try:
             self.c.execute(sql)
         except sqlite.OperationalError:
-            logger.exception("failed sql>>{}".format(sql))
+            logger.error("failed sql>>{}".format(sql))
         self.conn.commit()
         self.conn.close()
 

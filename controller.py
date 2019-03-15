@@ -28,13 +28,13 @@ class Controller(trigger.Trigger):  # メインモデルクラス
         if self.util_param['login_save'] == 1:
             sql = "UPDATE util SET username='{}', password='{}' WHERE id=1".format(self.login_v.login_f.username.get(), self.login_v.login_f.password.get())
             self.execute_db(sql)
-            logger.info('saving complete')
+            logger.debug('saving complete')
 
     # タグ検索自動いいねの指定条件を保存する
     def saved_tag_search_info(self):
         sql = "UPDATE util SET tag_name='{}', tag_liked_limit={} WHERE id=1".format(self.tag_v.tag_f.tag.get(), self.tag_v.tag_f.liked_limit.get())
         self.execute_db(sql)
-        logger.info('saving complete')
+        logger.debug('saving complete')
 
     # 設定ウインドウでの設定の変更を保存する
     def change_util_param(self, key, val):
@@ -47,14 +47,14 @@ class Controller(trigger.Trigger):  # メインモデルクラス
     def display_startup(self):
         if self.util_param['username'] == '' or self.util_param['auto_login'] == 0:
             # 手動ログイン時
-            logger.info("MANUAL mode")
+            logger.info("manual mode")
             self.title_v.title_f.info_l['text'] = "ようこそ"
             self.master.deiconify()  # メインウインドウ表示
             time.sleep(1)
             self.login_v.tkraise()  # ログインビューを表示
         else:
             # 自動ログイン時
-            logger.info("AUTO mode")
+            logger.info("auto mode")
             self.master.deiconify()  # メインウインドウ表示
 
             # pushed_loginを介さないので、実行前設定を行う
@@ -71,7 +71,7 @@ class Controller(trigger.Trigger):  # メインモデルクラス
         # 確認ビューの表示が変更されるため、OKボタンを押して
         # メインビューに戻った時にタスクフラグを下ろす
         self.task_fl = False
-        logger.info("SHOW")
+        logger.debug("show")
 
     # タイムラインビューを表示
     def display_timeline(self):
@@ -84,7 +84,7 @@ class Controller(trigger.Trigger):  # メインモデルクラス
     def display_confirmation(self, str="OK"):
         self.cf_v.cf_f.cf_b['text'] = str
         self.cf_v.tkraise()
-        logger.info("SHOW")
+        logger.debug("show")
 
     # タイムライン指定条件を保存
     # mode: 0(指定回数達成), 1(既いいね連続回数)
@@ -94,7 +94,7 @@ class Controller(trigger.Trigger):  # メインモデルクラス
         else:
             sql = "UPDATE util SET timeline_continue_liked_limit={} WHERE id=1".format(self.tl_v.tl_f.timeline_entry.get())
         self.execute_db(sql)
-        logger.info('saving complete')
+        logger.debug('saving complete')
 
     # フォロワーリストウインドウを表示
     def deiconify_follower_window(self):
@@ -109,11 +109,15 @@ class Controller(trigger.Trigger):  # メインモデルクラス
         self.master.after(3000, self.fl_master.deiconify)
         # フォロワーリスト表示画面を有効にする
         self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
-        logger.info("SHOW")
+        logger.dubug("show")
 
     # フォロワーリストウインドウを閉じる
     def withdraw_follower_window(self):
         self.task_fl = False
         self.fl_master.withdraw()
         self.fl_v.tkraise()
-        logger.info("CLOSE")
+        logger.debug("show")
+
+    def update_follower_window(self):
+        self.fl_master.withdraw()
+        self.pushed_follower()

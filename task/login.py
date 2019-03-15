@@ -48,7 +48,7 @@ class LoginTask():
         # JSONを解析、アカウント情報を得る
         try:
             self.bs.get(self.PROFILE_URL)  # プロフィールページに遷移
-            time.sleep(3)
+            time.sleep(2)
             profile_json = self.bs.find_element_by_xpath(self.ACCOUNT_JSONDATA_XPATH)
             # script要素からJSONデータのみを抜き出す
             # ele.textは画面に表示されるもの限定なので使えない

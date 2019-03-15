@@ -80,6 +80,7 @@ class TimelineTask(TaskHelper):
             if not post:
                 if self.util_v.util_f.retry.get() == 1:  # リトライ時
                     logger.info("next media not found... retry")
+                    logger.info("cnt {}".format(self.timeline_liked_cnt))
                     self.info.set("次のメディアが見当たりません\n{}を再度実行します\n".format(self.task_name))
                     time.sleep(5)
                     self.timeline(mode)

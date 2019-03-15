@@ -62,6 +62,8 @@ class Application(Util, Definition, ViewManager, Controller, TaskManager):
             self.st_info['text'] = "@{}    更新中..".format(self.login_v.login_f.username.get())
             # アカウント情報更新
             threading.Thread(name='update', target=self.execute_task, args=[self.get_account_info, 'update']).start()
+        else:
+            logger.debug("pass")
         # 指定時間後に再帰する
         self.master.after(int(self.util_param['account_update_interval'])*60000, self.update_widgets)
 
@@ -81,7 +83,7 @@ class Application(Util, Definition, ViewManager, Controller, TaskManager):
             self.util_v.util_f.display_browser_c.state(['!alternate'])
             self.util_v.util_f.display_browser_c.state(['selected'])
         if self.util_param['retry'] == 1:
-            self.util_v.util_f.retry_c.set(self.util_param['retry'])
+            self.util_v.util_f.retry.set(self.util_param['retry'])
             self.util_v.util_f.retry_c.state(['!alternate'])  # 半選択解除
             self.util_v.util_f.retry_c.state(['selected'])  # 選択する
         # 自動ログインを無効にする

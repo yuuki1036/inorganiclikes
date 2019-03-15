@@ -161,6 +161,7 @@ class OneSidedFollowerFrame(ttk.Frame):
         self.act_f.pack(fill=tk.X)
 
         self.fr_l = ttk.Label(self.dc_f, text="")
+        self.ud_b = ttk.Button(self.dc_f, text="更新")
         self.sc_a = Scrollable(self.fl_sc)
         self.all_on_c_v = tk.IntVar()
         self.all_on_c = ttk.Checkbutton(self.act_f, text="全て選択", variable=self.all_on_c_v, onvalue=1, offvalue=0)
@@ -168,6 +169,7 @@ class OneSidedFollowerFrame(ttk.Frame):
         self.quit_b = ttk.Button(self.act_f, text="閉じる")
 
         self.fr_l.pack(fill=tk.X)
+        self.ud_b.pack(anchor=tk.E, padx=5)
         self.all_on_c.grid(row=0, column=0, sticky=tk.W)
         self.exec_b.grid(row=0, column=1, padx=169)
         self.quit_b.grid(row=0, column=2, sticky=tk.E)
@@ -188,6 +190,7 @@ class OneSidedFollowingFrame(ttk.Frame):
         self.act_f.pack(fill=tk.X)
 
         self.fg_l = ttk.Label(self.dc_f, text="")
+        self.ud_b = ttk.Button(self.dc_f, text="更新")
         self.sc_a = Scrollable(self.fl_sc)
         self.all_on_c_v = tk.IntVar()
         self.all_on_c = ttk.Checkbutton(self.act_f, text="全て選択", variable=self.all_on_c_v, onvalue=1, offvalue=0)
@@ -195,8 +198,9 @@ class OneSidedFollowingFrame(ttk.Frame):
         self.quit_b = ttk.Button(self.act_f, text="閉じる")
 
         self.fg_l.pack(fill=tk.X)
+        self.ud_b.pack(anchor=tk.E, padx=5)
         self.all_on_c.grid(row=0, column=0, sticky=tk.W)
-        self.exec_b.grid(row=0, column=1, padx=160)
+        self.exec_b.grid(row=0, column=1, padx=163)
         self.quit_b.grid(row=0, column=2, sticky=tk.E)
 
         self.all_on_c_v.set(0)
