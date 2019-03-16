@@ -80,7 +80,7 @@ class GetFollowerTask(TaskHelper):
                 # DOMの読込みを待つ
                 if not self.is_scroll_and_load():
                     # スクロール位置が下限に到達した場合
-                    if cnt >= limit:
+                    if cnt + 4 >= limit:
                         # フォロワー取得完了
                         break
                     else:
@@ -133,7 +133,7 @@ class GetFollowerTask(TaskHelper):
                 # DOMの読込みを待つ
                 if not self.is_scroll_and_load():
                     # スクロール位置が下限に到達した場合
-                    if cnt >= limit:
+                    if cnt + 4 >= limit:
                         # フォロー中取得完了
                         break
                     else:

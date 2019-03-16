@@ -60,6 +60,9 @@ class LoginTask():
                 self.st_info['text'] = "@{}    [圏外]".format(self.login_v.login_f.username.get())
                 self.tag_v.tag_f.tag_exec_b.state(['!disabled'])
                 self.tl_v.tl_f.tl_exec_b.state(['!disabled'])
+                self.fl_v.fl_f.fl_exec_b.state(['!disabled'])
+                if self.folloer_fl:
+                    self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
                 logger.info("network not connected")
             else:
                 self.task_end('login', "アカウント情報の取得に失敗しました\n\n", "JSON data get failed", 'ERROR')
@@ -92,7 +95,8 @@ class LoginTask():
             self.tag_v.tag_f.tag_exec_b.state(['!disabled'])
             self.tl_v.tl_f.tl_exec_b.state(['!disabled'])
             self.fl_v.fl_f.fl_exec_b.state(['!disabled'])
-            self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
+            if self.folloer_fl:
+                self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
         self.bs.get(self.TOP_URL)
         self.task_fl = False
         logger.info("complete")

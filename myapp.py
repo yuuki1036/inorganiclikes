@@ -34,7 +34,7 @@ class Application(Util, Definition, ViewManager, Controller, TaskManager):
         self.login_fl = False  # 初回ログイン判定
         self.task_fl = None  # ドライバーを使用するタスクの重複を防ぐ
         self.stop_fl = False  # タスク停止フラグ
-        self.timer_fl = False  # タイマーの状態
+        self.follower_fl = False  # フォロワーリスト取得フラグ
         # タスクの名前
         self.task_name = ''
         # ショートカット

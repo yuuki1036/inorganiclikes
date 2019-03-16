@@ -109,6 +109,7 @@ class Controller(trigger.Trigger):  # メインモデルクラス
         self.master.after(3000, self.fl_master.deiconify)
         # フォロワーリスト表示画面を有効にする
         self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
+        self.folloer_fl = True
         logger.debug("show")
 
     # フォロワーリストウインドウを閉じる
