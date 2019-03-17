@@ -61,7 +61,7 @@ class LoginTask():
                 self.tag_v.tag_f.tag_exec_b.state(['!disabled'])
                 self.tl_v.tl_f.tl_exec_b.state(['!disabled'])
                 self.fl_v.fl_f.fl_exec_b.state(['!disabled'])
-                if self.folloer_fl:
+                if self.follower_fl:
                     self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
                 logger.info("network not connected")
             else:
@@ -95,7 +95,7 @@ class LoginTask():
             self.tag_v.tag_f.tag_exec_b.state(['!disabled'])
             self.tl_v.tl_f.tl_exec_b.state(['!disabled'])
             self.fl_v.fl_f.fl_exec_b.state(['!disabled'])
-            if self.folloer_fl:
+            if self.follower_fl:
                 self.fl_v.fl_f.fl_deic_b.state(['!disabled'])
         self.bs.get(self.TOP_URL)
         self.task_fl = False
