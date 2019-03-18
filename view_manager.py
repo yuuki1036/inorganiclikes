@@ -123,7 +123,7 @@ class ViewManager():  # GUIの親クラス
         self.flw_v.fr_f.exec_b['command'] = self.pushed_followback
         self.flw_v.fr_f.all_on_c['command'] = lambda: self.checked_all(self.flw_v.fr_f.all_on_c_v.get(), self.fr_c_v_l)
         # OneSidedFollowingFrame
-        self.flw_v.fr_f.ud_b['command'] = self.update_follower_window
+        self.flw_v.fg_f.ud_b['command'] = self.update_follower_window
         self.flw_v.fg_f.quit_b['command'] = self.withdraw_follower_window
         self.flw_v.fg_f.exec_b['command'] = self.pushed_unfollow
         self.flw_v.fg_f.all_on_c['command'] = lambda: self.checked_all(self.flw_v.fg_f.all_on_c_v.get(), self.fg_c_v_l)

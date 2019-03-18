@@ -36,16 +36,15 @@ class TaskHelper():
     # get_follower, followback, unfollow
     def is_scroll_and_load(self):
         time.sleep(0.02)
-        if self.scroll_pos + 1000 < self.dialog_hight:
-            return True
-        else:
-            if self.scroll_pos + 500 >= self.dialog_hight:
-                time.sleep(0.1)
-            elif self.scroll_pos + 250 >= self.dialog_hight:
-                time.sleep(0.5)
-            elif self.scroll_pos >= self.dialog_hight:
-                time.sleep(1)
+        if self.scroll_pos >= self.dialog_hight:
+            time.sleep(0.1)
             self.dialog_hight = self.bs.execute_script("return arguments[0].scrollHeight", self.dialog)
-            if self.scroll_pos < self.dialog_hight:
-                return True
-            return False
+            if self.scroll_pos >= self.dialog_hight:
+                time.sleep(1)
+                self.dialog_hight = self.bs.execute_script("return arguments[0].scrollHeight", self.dialog)
+                if self.scroll_pos >= self.dialog_hight:
+                    time.sleep(10)
+                    self.dialog_hight = self.bs.execute_script("return arguments[0].scrollHeight", self.dialog)
+                    if self.scroll_pos >= self.dialog_hight:
+                        return False
+        return True
