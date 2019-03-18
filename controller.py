@@ -13,14 +13,15 @@ class Controller(trigger.Trigger):  # メインモデルクラス
 
     # メインコントロールビューのステータスを更新する
     def update_status(self):
-        # 表示の書換え
-        self.st_info['text'] = "@{}   {}/{}".format(self.login_v.login_f.username.get(), self.util_param['act_cnt'], self.util_param['act_limit'])
-        self.main_v.status_f.low_l['text'] = "投稿{}件  フォロワー{}人  フォロー中{}人".format(self.post_n, self.follower_n, self.following_n)
+        # 経過時間をチェック（行動回数をリセットするため）
+        self.execute_time()
         # 行動回数を保存
         sql = "UPDATE util SET act_cnt={0[act_cnt]} WHERE id=1".format(self.util_param)
         self.execute_db(sql)
-        # 経過時間をチェック（行動回数をリセットするため）
-        self.execute_time()
+        # 表示の書換え
+        self.st_info['text'] = "@{}   {}/{}".format(self.login_v.login_f.username.get(), self.util_param['act_cnt'], self.util_param['act_limit'])
+        self.main_v.status_f.low_l['text'] = "投稿{}件  フォロワー{}人  フォロー中{}人".format(self.post_n, self.follower_n, self.following_n)
+
         logger.info("complete")
 
     # ユーザーのログイン情報を保存する
