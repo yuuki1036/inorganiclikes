@@ -16,12 +16,12 @@ class TagSearchTask():
         tag_name = self.tag_v.tag_f.tag.get()  # 検索タグ
         # タグ検索URL作成
         encoded_tag = urllib.parse.quote(tag_name)  # エンコード
-        self.TAG_SEARCH_URL = self.TAG_SEARCH_URL.format(encoded_tag)
+        self.TAG_SEARCH_FORMATTED_URL = self.TAG_SEARCH_URL.format(encoded_tag)
         time.sleep(1)
 
         try:
             # 検索結果ページにアクセス
-            self.bs.get(self.TAG_SEARCH_URL)
+            self.bs.get(self.TAG_SEARCH_FORMATTED_URL)
             time.sleep(3)
             # メディアを選択し、ポップアップさせる
             self.bs.find_element_by_xpath(self.TAG_MEDIA_XPATH).click()
