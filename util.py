@@ -1,6 +1,5 @@
 from __init__ import get_module_logger
 from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
 from pysqlcipher3 import dbapi2 as sqlite
 import datetime
 import os
