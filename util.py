@@ -1,5 +1,6 @@
 from __init__ import get_module_logger
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from pysqlcipher3 import dbapi2 as sqlite
 import datetime
 import os
@@ -26,6 +27,14 @@ class WebDriver():
         # ドライバー作成。ブラウザが起動する
         self.bs = webdriver.Chrome(executable_path=chromedriver, options=options)
         return self.bs
+
+    def display_browser(self):
+        try:
+            self.bs.close()
+        except WebDriverException:
+            pass
+        delattr(self, 'bs')
+        self.bs = self.web_driver_setup(0)
 
 
 class DB():
